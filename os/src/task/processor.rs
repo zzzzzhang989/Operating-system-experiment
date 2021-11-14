@@ -1,5 +1,3 @@
-//os/src/task/processor.rs
-
 use super::{TaskContext, TaskControlBlock};
 use alloc::sync::Arc;
 use lazy_static::*;
