@@ -1,5 +1,3 @@
-//user/src/bin/initproc.rs
-
 #![no_std]
 #![no_main]
 
@@ -22,7 +20,7 @@ fn main() -> i32 {
             let mut exit_code: i32 = 0;
             let pid = wait(&mut exit_code);
             if pid == -1 {
-                yield_();rrr
+                yield_();
                 continue;
             }
             println!(
@@ -34,4 +32,3 @@ fn main() -> i32 {
     }
     0
 }
-
