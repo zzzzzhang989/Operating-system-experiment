@@ -1,4 +1,3 @@
-   
 use crate::mm::translated_byte_buffer;
 use crate::task::current_user_token;
 
@@ -18,4 +17,3 @@ pub fn sys_write(fd: usize, buf: *const u8, len: usize) -> isize {
         }
     }
 }
-

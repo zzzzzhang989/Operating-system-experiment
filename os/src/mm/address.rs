@@ -110,13 +110,6 @@ impl VirtPageNum {
     }
 }
 
-impl PhysAddr {
-    pub fn get_mut<T>(&self) -> &'static mut T {
-        unsafe {
-            (self.0 as *mut T).as_mut().unwrap()
-        }
-    }
-}
 impl PhysPageNum {
     pub fn get_pte_array(&self) -> &'static mut [PageTableEntry] {
         let pa: PhysAddr = self.clone().into();
@@ -132,7 +125,9 @@ impl PhysPageNum {
     }
     pub fn get_mut<T>(&self) -> &'static mut T {
         let pa: PhysAddr = self.clone().into();
-        pa.get_mut()
+        unsafe {
+            (pa.0 as *mut T).as_mut().unwrap()
+        }
     }
 }
 

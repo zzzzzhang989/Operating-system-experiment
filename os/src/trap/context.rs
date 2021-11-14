@@ -1,4 +1,3 @@
-
 use riscv::register::sstatus::{Sstatus, self, SPP};
 
 #[repr(C)]
@@ -34,4 +33,3 @@ impl TrapContext {
         cx
     }
 }
-

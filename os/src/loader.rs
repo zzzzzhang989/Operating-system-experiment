@@ -18,4 +18,3 @@ pub fn get_app_data(app_id: usize) -> &'static [u8] {
         )
     }
 }
-
