@@ -10,7 +10,7 @@ use riscv::register::{
     stval,
 };
 use crate::syscall::syscall;
-use crate::batch::run_next_app;
+//use crate::batch::run_next_app;
 global_asm!(include_str!("trap.S"));
 pub fn init() {
     extern "C" { fn __alltraps(); }
@@ -30,11 +30,11 @@ pub fn trap_handler(cx: &mut TrapContext) -> &mut TrapContext {
         Trap::Exception(Exception::StoreFault) |
         Trap::Exception(Exception::StorePageFault) => {
             println!("[kernel] PageFault in application, core dumped.");
-            run_next_app();
+            //run_next_app();
         }
         Trap::Exception(Exception::IllegalInstruction) => {
             println!("[kernel] IllegalInstruction in application, core dumped.");
-            run_next_app();
+            //run_next_app();
         }
         _ => {
             panic!("Unsupported trap {:?}, stval = {:#x}!", scause.cause(), stval);
