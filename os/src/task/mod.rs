@@ -1,4 +1,6 @@
-//os/src/task/mod.rs
+mod context;
+mod switch;
+mod task;
 
 use crate::loader::{get_num_app, get_app_data};
 use crate::trap::TrapContext;
@@ -8,10 +10,16 @@ use switch::__switch;
 use task::{TaskControlBlock, TaskStatus};
 use alloc::vec::Vec;
 
+pub use context::TaskContext;
 
 pub struct TaskManager {
     num_app: usize,
     inner: UPSafeCell<TaskManagerInner>,
+}
+
+struct TaskManagerInner {
+    tasks: Vec<TaskControlBlock>,
+    current_task: usize,
 }
 
 lazy_static! {
@@ -142,3 +150,4 @@ pub fn current_user_token() -> usize {
 pub fn current_trap_cx() -> &'static mut TrapContext {
     TASK_MANAGER.get_current_trap_cx()
 }
+
